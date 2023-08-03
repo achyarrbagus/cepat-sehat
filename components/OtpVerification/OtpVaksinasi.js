@@ -65,8 +65,6 @@ const OtpVaksinasi = ({ idxSelected,visible, setVisible, form, data }) => {
       otp: otp1 + otp2 + otp3 + otp4,
       vaksinasi_anak: form.vaksinasi_anak,
     };
-    console.log(request)
-    console.log(process.env.URL_API);
     try {
       const response = await fetch(`${process.env.URL_API}/vaksinasi`, {
         method: "POST",
@@ -75,24 +73,26 @@ const OtpVaksinasi = ({ idxSelected,visible, setVisible, form, data }) => {
         },
         body: JSON.stringify(request),
       });
-      console.log(response)
+      console.log(response.ok)
 
       if (!response.ok) {
         throw new Error("Failed to send POST request");
         window.alert("Failed to send POST request");
         setVisible(false);
+        return
       }
 
       const responseData = await response.json();
       setResponse(responseData);
       console.log(responseData)
       window.alert("Updated Data success");
+      router.push(`/result?uid=${data?.uuid}`);
       setVisible(false);
-      router.push(`/step/surat?phone=${values?.phone}&uid=${res.uid}`);
+      return
 
     } catch (error) {
-      console.error(error);
-      window.alert("Failed to send POST request");
+      console.log(error);
+      window.alert(error);
       setVisible(false);
     }
   };

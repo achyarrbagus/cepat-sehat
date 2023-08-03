@@ -206,8 +206,6 @@ export default function Pofile() {
   setSelectedData([...selectedData]); // Menetapkan ulang selectedData dengan array baru setelah menghapus elemen
 };
 
-  console.log(selectedData)
-
   const handleTimeChange = (time) => {
     setSelectedTime(time);
   };

@@ -136,7 +136,6 @@ export default function Pofile() {
       ? kids.anak_tumbuh_kembangs.map((item, index) => {
           const prevItem = prevIndex >= 0 ? kids.anak_tumbuh_kembangs[prevIndex] : null; // Access the previous item using the previous index
           prevIndex = index; // Update the previous index for the next iteration
-          console.log(kids.dateofbirth, "ini kids");
 
           const endDate = item.created_at.toString().split("T")[0];
           const startDate = kids.dateofbirth;
@@ -181,7 +180,6 @@ export default function Pofile() {
   };
 
   const handleOk = () => {
-    console.log(kids);
     let tinggiBadan = document.getElementById("tinggiBadan").value;
     let beratBadan = document.getElementById("beratBadan").value;
     let lingkarKepala = document.getElementById("lingkarKepala").value;

@@ -10,11 +10,11 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
 
   const resendCode = async () => {
     if (cooldown) {
-      console.log("Please wait. Resending code is in cooldown.");
+      window.alert("Please wait. Resending code is in cooldown.");
       return;
     }
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/login-phone/?phone=${data.phone}`, {
+      const response = await fetch(`${process.env.URL_API}/login-phone/?phone=${data.phone}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,9 +61,10 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
       lingkar_kepala: form.lingkar_kepala,
       otp: otp1 + otp2 + otp3 + otp4,
     };
+    console.log(dataRequest)
 
     try {
-      const response = await fetch(`${process.env.URL_API}/api/v1/tumbuh-kembang`, {
+      const response = await fetch(`${process.env.URL_API}/tumbuh-kembang`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
