@@ -59,6 +59,7 @@ export default function Pofile() {
       });
   };
 
+  console.log("hello world")
 
   const fetchVaksin = async () => {
     try {
