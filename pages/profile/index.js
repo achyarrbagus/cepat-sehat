@@ -52,7 +52,7 @@ export default function Pofile() {
    try {
     const userData = await fetchUser(query);
     const vaksinData = await fetchVaksin();
-    if (userData && vaksinData) {
+    if (userData) {
       setData(userData);
       setKids(userData.anak.slice(-1)[0]);
       setVaksin(vaksinData)
