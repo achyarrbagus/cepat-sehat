@@ -83,7 +83,7 @@ export default function Pofile() {
   const fetchVaksin = async () => {
     try {
     const resp = await axios.get(`${process.env.URL_API}/vaksins`);
-    if (resp.data && resp.data.data) {
+    if (resp) {
       setVaksin(resp.data.data);
       return resp.data.data;
     } else {
@@ -101,7 +101,8 @@ export default function Pofile() {
       if (qy) {
         const resp = await axios.get(`${process.env.URL_API}/unique-user/${query}`);
         const respJson = resp.data;
-        if(respJson){
+        if(resp){
+          console.log(resp)
           setData(respJson.data);
           setKids(respJson.data.anak.slice(-1)[0]);
           return
