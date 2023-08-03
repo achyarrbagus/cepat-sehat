@@ -43,7 +43,11 @@ export default function Pofile() {
   const [resp, setResp] = useState(false);
 
   useEffect(() => {
-    onInit();
+    // onInit();
+    fetchUser(query);
+    fetchVaksin();
+    console.log(userData)
+    console.log(vaksinData)
     // fetchUser(query);
   }, [query]);
 
@@ -51,7 +55,9 @@ export default function Pofile() {
   const onInit = async () => {
    try {
     const userData = await fetchUser(query);
+    console.log(userData)
     const vaksinData = await fetchVaksin();
+    console.log(vaksinData)
     if (userData) {
       setData(userData);
       setKids(userData.anak.slice(-1)[0]);
