@@ -369,8 +369,6 @@ export default function Pofile() {
 
   return (
     <>
-    {data && (
- <>
       <Layout title="Profile" back="/">
         <div className="bg-white">
           {/* profile */}
@@ -640,19 +638,5 @@ export default function Pofile() {
         fecthUser={() => fetchUser(query)}
       />
     </>
-    )
-    // ):( 
-    //   <>
-    //       <div className="flex justify-center min-h-screen items-center">
-    //         <div>
-    //       <Spin tip="Loading" size="large">
-    //       </Spin>
-    //         </div>
-    //       </div>
-    //   </>
-    // )
-  }
-    </>
-   
   );
 }
