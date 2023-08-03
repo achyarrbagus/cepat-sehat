@@ -43,28 +43,40 @@ export default function Pofile() {
   const [resp, setResp] = useState(false);
 
   useEffect(() => {
-    // onInit();
-    fetchUser(query);
-    fetchVaksin();
-    handleSwipVaksin(kids?.vaksin, "Sudah", vaksin);
+    onInit();
+    // fetchUser(query);
   }, [query]);
 
-  const onInit = async () => {
-    Promise.all([fetchArticles()])
-      .then(([articles, doctors]) => {
-        setArticles(articles);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
-  console.log("hello world")
+  const onInit = async () => {
+   try {
+    const userData = await fetchUser(query);
+    const vaksinData = await fetchVaksin();
+    if (userData && vaksinData) {
+      setData(userData);
+      setKids(userData.anak.slice(-1)[0]);
+      setVaksin(vaksinData)
+    }
+    // The rest of your logic...
+  } catch (err) {
+    console.log(err);
+  }
+};
+  // const onInit = async () => {
+  //   Promise.all([fetchArticles()])
+  //     .then(([articles, doctors]) => {
+  //       setArticles(articles);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const fetchVaksin = async () => {
     try {
       const resp = await axios.get(`${process.env.URL_API}/vaksins`);
       setVaksin(resp.data.data);
+      return resp.data.data
     } catch (error) {
       console.log(error);
     }
@@ -369,6 +381,8 @@ export default function Pofile() {
 
   return (
     <>
+    {data ? (
+ <>
       <Layout title="Profile" back="/">
         <div className="bg-white">
           {/* profile */}
@@ -638,5 +652,18 @@ export default function Pofile() {
         fecthUser={() => fetchUser(query)}
       />
     </>
+    ):( 
+      <>
+          <div className="flex justify-center min-h-screen items-center">
+            <div>
+          <Spin tip="Loading" size="large">
+          </Spin>
+            </div>
+          </div>
+      </>
+    )
+  }
+    </>
+   
   );
 }
