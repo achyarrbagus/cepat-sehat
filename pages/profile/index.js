@@ -46,10 +46,12 @@ export default function Pofile() {
     // onInit();
     fetchUser(query);
     fetchVaksin();
-    console.log(userData)
-    console.log(vaksinData)
     // fetchUser(query);
   }, [query]);
+
+
+  console.log(data)
+  console.log(vaksin)
 
 
   const onInit = async () => {
