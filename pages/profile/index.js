@@ -49,17 +49,10 @@ export default function Pofile() {
     // fetchUser(query);
   }, [query]);
 
-
-  console.log(data)
-  console.log(vaksin)
-
-
   const onInit = async () => {
    try {
     const userData = await fetchUser(query);
-    console.log(userData)
     const vaksinData = await fetchVaksin();
-    console.log(vaksinData)
     if (userData) {
       setData(userData);
       setKids(userData.anak.slice(-1)[0]);
@@ -87,7 +80,7 @@ export default function Pofile() {
       setVaksin(resp.data.data);
       return resp.data.data;
     } else {
-      console.log('Data tidak ditemukan');
+      console.log('404');
       return null;
     }
   } catch (error) {
@@ -102,7 +95,6 @@ export default function Pofile() {
         const resp = await axios.get(`${process.env.URL_API}/unique-user/${query}`);
         const respJson = resp.data;
         if(resp){
-          console.log(resp)
           setData(respJson.data);
           setKids(respJson.data.anak.slice(-1)[0]);
           return

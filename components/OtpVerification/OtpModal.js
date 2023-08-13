@@ -30,8 +30,6 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
 
       // Mulai countdown untuk mengatur kembali cooldown setelah batas waktu tertentu
 
-      const responseData = await response.json();
-      console.log(responseData);
       setTimeout(() => {
         setCooldown(false);
       }, cooldownTime);
@@ -61,7 +59,6 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
       lingkar_kepala: form.lingkar_kepala,
       otp: otp1 + otp2 + otp3 + otp4,
     };
-    console.log(dataRequest)
 
     try {
       const response = await fetch(`${process.env.URL_API}/tumbuh-kembang`, {
@@ -73,6 +70,7 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
       });
 
       if (!response.ok) {
+        console.log(response)
         throw new Error("Failed to send POST request");
         window.alert("Failed to send POST request");
         setVisible(false);
@@ -85,7 +83,6 @@ const OtpModal = ({ visible, setVisible, form, data, fecthUser }) => {
 
       // Hapus window.location.reload() jika tidak diperlukan atau jika ingin memproses respons server lebih lanjut.
     } catch (error) {
-      console.error(error);
       window.alert("Failed to send POST request");
       setVisible(false);
     }
